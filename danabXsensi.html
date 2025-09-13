@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>danabXsensi - Free Fire Settings Generator</title>
+    
+    <!-- Tailwind CSS for modern and responsive styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts for a gaming-style font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS for theme, animations, and glowing effects -->
+    <style>
+        /* Apply the custom font and a dark, futuristic theme */
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background-color: #0d0c22;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(0, 255, 255, 0.2) 0%, rgba(0, 255, 255, 0) 25%),
+                radial-gradient(circle at 75% 75%, rgba(255, 0, 255, 0.2) 0%, rgba(255, 0, 255, 0) 25%);
+            color: #e0e0e0;
+        }
+
+        /* Define the glowing animation for the main title */
+        @keyframes glow {
+            0% {
+                text-shadow: 0 0 10px #00aaff, 0 0 20px #00aaff, 0 0 30px #00aaff, 0 0 40px #ff00ff, 0 0 50px #ff00ff, 0 0 60px #ff00ff, 0 0 70px #ff00ff;
+            }
+            50% {
+                text-shadow: 0 0 20px #00aaff, 0 0 30px #ff00ff, 0 0 40px #ff00ff, 0 0 50px #00aaff, 0 0 60px #00aaff, 0 0 70px #00aaff, 0 0 80px #00aaff;
+            }
+            100% {
+                text-shadow: 0 0 10px #00aaff, 0 0 20px #00aaff, 0 0 30px #00aaff, 0 0 40px #ff00ff, 0 0 50px #ff00ff, 0 0 60px #ff00ff, 0 0 70px #ff00ff;
+            }
+        }
+        
+        /* Apply the animation to the title */
+        .glowing-title {
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        /* Custom shadow effect for the main card */
+        .neon-shadow {
+            box-shadow: 0 0 5px rgba(0, 170, 255, 0.8), 0 0 10px rgba(0, 170, 255, 0.6), 0 0 20px rgba(255, 0, 255, 0.4);
+        }
+
+        /* Styling for the primary action buttons */
+        .action-btn {
+            background: linear-gradient(45deg, #00aaff, #ff00ff);
+            border: none;
+            transition: all 0.3s ease-in-out;
+            text-shadow: 0 0 5px rgba(0,0,0,0.5);
+        }
+
+        .action-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px #00aaff, 0 0 25px #ff00ff;
+        }
+
+        /* Styling for the setting items */
+        .setting-item {
+            background-color: rgba(30, 30, 60, 0.6);
+            border: 1px solid rgba(0, 170, 255, 0.5);
+            backdrop-filter: blur(5px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+
+    <!-- Home Page Container -->
+    <main id="home-page" class="w-full max-w-md mx-auto bg-gray-900/50 rounded-2xl border border-cyan-400/30 p-8 space-y-10 text-center neon-shadow">
+        <header>
+            <h1 class="text-4xl md:text-5xl font-bold uppercase tracking-widest text-white">
+                danabXsensi
+            </h1>
+            <p class="text-cyan-300 mt-2 text-md">Your Free Fire Settings Hub</p>
+        </header>
+        
+        <button id="open-btn" class="action-btn w-full py-4 rounded-lg text-white font-bold text-2xl uppercase tracking-wider">
+            OPEN
+        </button>
+    </main>
+
+    <!-- Generator Page Container (Initially hidden) -->
+    <main id="generator-page" class="hidden w-full max-w-md mx-auto bg-gray-900/50 rounded-2xl border border-cyan-400/30 p-6 md:p-8 space-y-8 neon-shadow">
+        
+        <!-- Glowing Header with Back Button -->
+        <header class="text-center relative flex items-center justify-center">
+            <button id="back-btn" title="Go Back" class="absolute left-0 text-cyan-300 hover:text-white transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7" />
+                </svg>
+            </button>
+            <div>
+                <h1 class="glowing-title text-2xl md:text-3xl font-bold uppercase tracking-widest">
+                    SUBSCRIBE TO DANAB YT
+                </h1>
+                <p class="text-cyan-300 mt-2 text-sm">Free Fire Settings Generator</p>
+            </div>
+        </header>
+
+        <!-- Settings Display Area -->
+        <section id="settings-container" class="space-y-3">
+            <div class="setting-item flex items-center justify-between p-4 rounded-lg">
+                <span class="text-lg">🎯 General</span>
+                <span id="general" class="text-2xl font-bold text-cyan-300">100</span>
+            </div>
+            <div class="setting-item flex items-center justify-between p-4 rounded-lg">
+                <span class="text-lg">🔴 Red Dot</span>
+                <span id="red-dot" class="text-2xl font-bold text-cyan-300">100</span>
+            </div>
+            <div class="setting-item flex items-center justify-between p-4 rounded-lg">
+                <span class="text-lg">🔭 2x Scope</span>
+                <span id="2x-scope" class="text-2xl font-bold text-cyan-300">100</span>
+            </div>
+            <div class="setting-item flex items-center justify-between p-4 rounded-lg">
+                <span class="text-lg">✨ 4x Scope</span>
+                <span id="4x-scope" class="text-2xl font-bold text-cyan-300">100</span>
+            </div>
+            <div class="setting-item flex items-center justify-between p-4 rounded-lg">
+                <span class="text-lg">🦅 Sniper Scope</span>
+                <span id="sniper-scope" class="text-2xl font-bold text-cyan-300">100</span>
+            </div>
+            <div class="setting-item flex items-center justify-between p-4 rounded-lg">
+                <span class="text-lg">⚙️ DPI</span>
+                <span id="dpi" class="text-2xl font-bold text-pink-400">500</span>
+            </div>
+            <div class="setting-item flex items-center justify-between p-4 rounded-lg">
+                <span class="text-lg">🔥 Fire Button</span>
+                <span id="fire-button" class="text-2xl font-bold text-pink-400">55</span>
+            </div>
+        </section>
+
+        <!-- Generate Button -->
+        <footer>
+            <button id="generate-btn" class="action-btn w-full py-4 rounded-lg text-white font-bold text-xl uppercase tracking-wider">
+                Generate Settings
+            </button>
+        </footer>
+
+    </main>
+
+    <script>
+        // --- Page Navigation ---
+        const homePage = document.getElementById('home-page');
+        const generatorPage = document.getElementById('generator-page');
+        const openBtn = document.getElementById('open-btn');
+        const backBtn = document.getElementById('back-btn');
+
+        openBtn.addEventListener('click', () => {
+            homePage.classList.add('hidden');
+            generatorPage.classList.remove('hidden');
+        });
+
+        backBtn.addEventListener('click', () => {
+            generatorPage.classList.add('hidden');
+            homePage.classList.remove('hidden');
+        });
+
+        // --- Generator Logic ---
+        const generalEl = document.getElementById('general');
+        const redDotEl = document.getElementById('red-dot');
+        const scope2xEl = document.getElementById('2x-scope');
+        const scope4xEl = document.getElementById('4x-scope');
+        const sniperScopeEl = document.getElementById('sniper-scope');
+        const dpiEl = document.getElementById('dpi');
+        const fireButtonEl = document.getElementById('fire-button');
+        const generateBtn = document.getElementById('generate-btn');
+
+        /**
+         * Generates a random integer within a specified range.
+         * @param {number} min - The minimum value (inclusive).
+         * @param {number} max - The maximum value (inclusive).
+         * @returns {number} A random integer.
+         */
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        /**
+         * Generates and displays new random settings for the game.
+         */
+        function generateSettings() {
+            // Updated sensitivity ranges
+            generalEl.textContent = getRandomInt(85, 199);
+            redDotEl.textContent = getRandomInt(85, 100); // This one remains under 100
+            scope2xEl.textContent = getRandomInt(85, 199);
+            scope4xEl.textContent = getRandomInt(85, 199);
+            sniperScopeEl.textContent = getRandomInt(70, 199);
+
+            // DPI (common mobile range)
+            dpiEl.textContent = getRandomInt(380, 720);
+
+            // Fire Button Size (optimal range for touch)
+            fireButtonEl.textContent = getRandomInt(45, 65);
+        }
+
+        // Add click event listener to the generate button
+        generateBtn.addEventListener('click', generateSettings);
+        
+        // Generate initial settings when the page first becomes visible
+        document.addEventListener('DOMContentLoaded', generateSettings);
+
+    </script>
+</body>
+</html>
+
